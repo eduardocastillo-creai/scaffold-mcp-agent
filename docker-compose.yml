@@ -1,0 +1,21 @@
+version: '3'
+services:
+  rag-server:
+    image: mcp-rag-server
+    ports:
+      - "3002:3002"
+    networks:
+      - my-network
+
+  orchestrator:
+    image: agent-orchestrator
+    environment:
+      - RAG_SERVER_CONNECTION=http://rag-server:3002/sse
+    networks:
+      - my-network
+    ports:
+      - "3000:3000"
+
+networks:
+  my-network:
+    driver: bridge

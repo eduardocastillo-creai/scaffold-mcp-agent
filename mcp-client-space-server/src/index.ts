@@ -7,9 +7,14 @@ import { z } from "zod";
 
 dotenv.config();
 
+interface Question {
+  question: string;
+  answer: string | null;
+}
+
 const server = new McpServer({
-  name: "rag-server",
-  version: "1.0.0"
+  name: "client-space-server",
+  version: "0.1.0"
 });
 
 server.resource(
@@ -18,49 +23,83 @@ server.resource(
   async (uri) => ({
     contents: [{
       uri: uri.href,
-      text: "Rag configuration mcp server"
+      text: "Client space configuration mcp server"
     }]
   })
 );
 
 server.tool(
-  "calculate-bmi",
-  "Calculate bmi using weight and height",
+  "create-ticket",
+  "Create a ticket within client space for managers",
   {
-    weightKg: z.number(),
-    heightM: z.number()
-  },
-  async ({ weightKg, heightM }) => ({
-    content: [{
-      type: "text",
-      text: String(weightKg / (heightM * heightM))
-    }]
-  })
-);
+    ticket_type: z.number(),
+    questions: z.array(
+      z.object({
+        question: z.string(),
+        answer: z.string()
+      })
+    ) },
+  async ({ ticket_type, questions }) => {
+    let currentQuestions = questions
+    if (ticket_type == 1) {
+      currentQuestions = currentQuestions || [
+        {
+          "question": "First question",
+          "answer": ""
+        },
+        {
+          "question": "Second question",
+          "answer": ""
+        },
+        {
+          "question": "Third question",
+          "answer": ""
+        },
+        {
+          "question": "Four question",
+          "answer": ""
+        },
+      ]
+    } else {
+      currentQuestions = currentQuestions || [
+        {
+          "question": "First question type 2",
+          "answer": ""
+        },
+        {
+          "question": "Second question type 2",
+          "answer": ""
+        },
+        {
+          "question": "Third question type 2",
+          "answer": ""
+        },
+        {
+          "question": "Four question type 2",
+          "answer": ""
+        },
+      ]
+    }
 
-server.tool(
-  "fetch-weather",
-  "Fetch and query weather",
-  { city: z.string() },
-  async ({ city }) => {
-    const response = await fetch(`https://api.weather.com/${city}`);
-    const data = await response.text();
+    const state = eval_state(currentQuestions);
     return {
-      content: [{ type: "text", text: data }]
+      content: [{
+        type: "text",
+        text: `Current state: ${state} for current questions ${currentQuestions}`,
+        state: state,
+        currentQuestions: currentQuestions }]
     };
   }
 );
 
-server.tool(
-  "retrieve-data",
-  "Retrieves data for client or personal data",
-  { question: z.string() },
-  async ({ question }) => {
-    return {
-      content: [{ type: "text", text: `For ${question} the answer is this ...` }]
-    };
+const eval_state = (questions: { question: string; answer: string }[]) => {
+  for (const item of questions) {
+    if (!item.answer || item.answer.trim() === "") {
+      return "pending";
+    }
   }
-);
+  return "complete";
+};
 
 const app = express();
 let transport: SSEServerTransport | null = null;

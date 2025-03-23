@@ -1,7 +1,7 @@
 NODE_VERSION := 22
-DOCKER_IMAGE_NAME := mcp-rag-server
-DOCKER_CONTAINER_NAME := mcp-rag-server-container
-DOCKER_PORT := 3001
+DOCKER_IMAGE_NAME := mcp-n8n-salesforce-server
+DOCKER_CONTAINER_NAME := mcp-n8n-salesforce-server-container
+DOCKER_PORT := 3003
 
 # Local setup
 .PHONY: install install-dev start build test clean

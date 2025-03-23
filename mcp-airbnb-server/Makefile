@@ -1,7 +1,7 @@
-NODE_VERSION := 22
-DOCKER_IMAGE_NAME := mcp-rag-server
-DOCKER_CONTAINER_NAME := mcp-rag-server-container
-DOCKER_PORT := 3001
+NODE_VERSION := 20
+DOCKER_IMAGE_NAME := mcp-airbnb-server
+DOCKER_CONTAINER_NAME := mcp-airbnb-server-container
+DOCKER_PORT := 3005
 
 # Local setup
 .PHONY: install install-dev start build test clean

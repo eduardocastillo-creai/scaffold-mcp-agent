@@ -7,14 +7,33 @@ import { createReactAgent } from '@langchain/langgraph/prebuilt';
 import express, { Request, Response } from 'express';
 
 dotenv.config();
+const client_space_server_connection = process.env.CLIENT_SPACE_SERVER_CONNECTION || "http://host.docker.internal:3001/sse";
 const rag_server_connection = process.env.RAG_SERVER_CONNECTION || "http://host.docker.internal:3002/sse";
-console.log(rag_server_connection)
+const n8n_salesforce_server_connection = process.env.N8N_SALESFORCE_SERVER_CONNECTION || "http://host.docker.internal:3003/sse";
+const figma_server_connection = process.env.FIGMA_SERVER_CONNECTION || "http://host.docker.internal:3004/sse";
+const airbnb_server_connection = process.env.AIRBNB_SERVER_CONNECTION || "http://host.docker.internal:3004/sse";
 
 // MCP connection
 const client = new MultiServerMCPClient();
 await client.connectToServerViaSSE(
   'rag-server',
   rag_server_connection
+);
+await client.connectToServerViaSSE(
+  'client-space-server',
+  client_space_server_connection
+);
+await client.connectToServerViaSSE(
+  'n8n-salesforce-server',
+  n8n_salesforce_server_connection
+);
+await client.connectToServerViaSSE(
+  'figma-server',
+  figma_server_connection
+);
+await client.connectToServerViaSSE(
+  'airbnb-server',
+  airbnb_server_connection
 );
 const tools = client.getTools();
 

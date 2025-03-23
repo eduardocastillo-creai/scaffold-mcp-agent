@@ -1,7 +1,7 @@
-NODE_VERSION := 22
-DOCKER_IMAGE_NAME := mcp-rag-server
-DOCKER_CONTAINER_NAME := mcp-rag-server-container
-DOCKER_PORT := 3001
+NODE_VERSION := 20
+DOCKER_IMAGE_NAME := mcp-figma-server
+DOCKER_CONTAINER_NAME := mcp-figma-server-container
+DOCKER_PORT := 3004
 
 # Local setup
 .PHONY: install install-dev start build test clean

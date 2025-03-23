@@ -1,4 +1,4 @@
-FROM node:22-slim
+FROM node:20-slim
 
 WORKDIR /usr/src/app
 
@@ -10,6 +10,6 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 3001
+EXPOSE 3004
 
 CMD ["npm", "start"]

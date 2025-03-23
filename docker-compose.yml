@@ -1,20 +1,129 @@
-version: '3'
+version: '3.4'
+
 services:
-  rag-server:
-    image: mcp-rag-server
+  mcp-client-space-server:
+    build:
+      context: ./mcp-client-space-server
+    image: mcp-client-space-server:latest
+    ports:
+      - "3001:3001"
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/sse"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  mcp-rag-server:
+    build:
+      context: ./mcp-rag-server
+    image: mcp-rag-server:latest
     ports:
       - "3002:3002"
     networks:
       - my-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3002/sse"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 
-  orchestrator:
-    image: agent-orchestrator
+  n8n-salesforce-server:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n-salesforce-server
+    restart: always
+    ports:
+      - "5678:5678"
     environment:
-      - RAG_SERVER_CONNECTION=http://rag-server:3002/sse
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - WEBHOOK_URL=https://3489-187-189-127-18.ngrok-free.app/
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://3489-187-189-127-18.ngrok-free.app/"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  mcp-n8n-salesforce-server:
+    build:
+      context: ./mcp-n8n-salesforce-server
+    image: mcp-n8n-salesforce-server:latest
+    ports:
+      - "3003:3003"
+    networks:
+      - my-network
+    depends_on:
+      - n8n-salesforce-server
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3003/sse"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  mcp-figma-server:
+    build:
+      context: ./mcp-figma-server
+    image: mcp-figma-server:latest
+    ports:
+      - "3004:3004"
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3004/sse"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  mcp-airbnb-server:
+    build:
+      context: ./mcp-airbnb-server
+    image: mcp-airbnb-server:latest
+    ports:
+      - "3005:3005"
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3005/sse"]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  agent-orchestrator:
+    build:
+      context: ./agent-orchestrator
+    image: agent-orchestrator:latest
+    environment:
+      - CLIENT_SPACE_SERVER_CONNECTION=http://mcp-client-space-server:3001/sse
+      - RAG_SERVER_CONNECTION=http://mcp-rag-server:3002/sse
+      - N8N_SALESFORCE_SERVER_CONNECTION=http://mcp-n8n-salesforce-server:3003/sse
+      - FIGMA_SERVER_CONNECTION=http://mcp-figma-server:3004/sse
+      - AIRBNB_SERVER_CONNECTION=http://mcp-airbnb-server:3005/sse
     networks:
       - my-network
     ports:
       - "3000:3000"
+    depends_on:
+      - mcp-client-space-server
+      - mcp-rag-server
+      - n8n-salesforce-server
+      - mcp-n8n-salesforce-server
+      - mcp-figma-server
+      - mcp-airbnb-server
+    restart: unless-stopped
+
+volumes:
+  n8n_data:
 
 networks:
   my-network:

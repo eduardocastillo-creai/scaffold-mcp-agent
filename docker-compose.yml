@@ -9,12 +9,6 @@ services:
       - "3001:3001"
     networks:
       - my-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3001/sse"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
 
   mcp-rag-server:
     build:
@@ -24,12 +18,6 @@ services:
       - "3002:3002"
     networks:
       - my-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3002/sse"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
 
   n8n-salesforce-server:
     image: docker.n8n.io/n8nio/n8n
@@ -45,12 +33,6 @@ services:
       - n8n_data:/home/node/.n8n
     networks:
       - my-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "https://3489-187-189-127-18.ngrok-free.app/"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
 
   mcp-n8n-salesforce-server:
     build:
@@ -62,12 +44,6 @@ services:
       - my-network
     depends_on:
       - n8n-salesforce-server
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3003/sse"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
 
   mcp-figma-server:
     build:
@@ -77,12 +53,6 @@ services:
       - "3004:3004"
     networks:
       - my-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3004/sse"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
 
   mcp-airbnb-server:
     build:
@@ -92,12 +62,6 @@ services:
       - "3005:3005"
     networks:
       - my-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3005/sse"]
-      interval: 30s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
 
   agent-orchestrator:
     build:

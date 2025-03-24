@@ -2,6 +2,9 @@ PYTHON := python3.11
 VENV := .venv
 ACTIVATE := source $(VENV)/bin/activate
 POETRY := poetry
+DOCKER_IMAGE_NAME := crewai-orchestrator
+DOCKER_CONTAINER_NAME := crewai-orchestrator-container
+DOCKER_PORT := 8080
 
 .DEFAULT_GOAL := help
 
@@ -25,7 +28,6 @@ create-venv:
 
 install: install-poetry
 	@$(POETRY) install --no-root
-	@$(POETRY) run python postinstall.py
 	@echo "Dependencies installed."
 
 add-dep:
@@ -50,3 +52,31 @@ help:
 	@echo "  make add-dep          Add a production dependency (e.g., make add-dep package=<package_name>)"
 	@echo "  make add-dev-dep      Add a development dependency (e.g., make add-dev-dep package=<package_name>)"
 	@echo "  make build            Build the project for distribution"
+
+
+# Docker setup
+.PHONY: docker-build docker-run docker-up docker-stop docker-remove docker-clean
+
+docker-build:
+	@echo "Building Docker image..."
+	docker build -t $(DOCKER_IMAGE_NAME) .
+
+docker-run:
+	@echo "Running Docker container..."
+	docker run --name $(DOCKER_CONTAINER_NAME) -p $(DOCKER_PORT):$(DOCKER_PORT) $(DOCKER_IMAGE_NAME)
+
+docker-up:
+	@echo "Starting Docker container using docker-compose..."
+	docker-compose up --build
+
+docker-stop:
+	@echo "Stopping Docker container..."
+	docker stop $(DOCKER_CONTAINER_NAME)
+
+docker-remove:
+	@echo "Removing Docker container..."
+	docker rm $(DOCKER_CONTAINER_NAME)
+
+docker-clean: docker-stop docker-remove
+	@echo "Cleaning Docker container and image..."
+	docker rmi $(DOCKER_IMAGE_NAME)

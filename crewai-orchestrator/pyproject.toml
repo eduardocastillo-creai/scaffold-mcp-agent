@@ -6,20 +6,19 @@ authors = ["Eduardo Castillo eduardocastillo@creai.mx"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.11,<3.13"
 crewai = { version = ">=0.108.0,<1.0.0", extras = ["tools"] }
 fastapi = "^0.115.11"
 uvicorn = "^0.34.0"
-
-[tool.poetry.dev-dependencies]
-#
+mcp = "^1.5.0"
+python-dotenv = "^1.0.1"
 
 [tool.poetry.scripts]
-crewai_orchestrator = "main:run"
-run_crew = "main:run"
-train = "main:train"
-replay = "main:replay"
-test = "main:test"
+start-app = "uvicorn src.main:app"
+
+[[tool.poetry.packages]]
+include = "*"
+from = "src"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -63,10 +63,10 @@ services:
     networks:
       - my-network
 
-  agent-orchestrator:
+  langgraph-orchestrator:
     build:
-      context: ./agent-orchestrator
-    image: agent-orchestrator:latest
+      context: ./langgraph-orchestrator
+    image: langgraph-orchestrator:latest
     environment:
       - CLIENT_SPACE_SERVER_CONNECTION=http://mcp-client-space-server:3001/sse
       - RAG_SERVER_CONNECTION=http://mcp-rag-server:3002/sse

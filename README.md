@@ -114,6 +114,7 @@ FIGMA_API_KEY=
 - mcp-n8n-salesforce-server/.env:
 ```bash
 PORT=3003
+N8N_WEBHOOK_URI=https://<random-number>.ngrok-free.app/webhook/salesforce
 ```
 
 - mcp-rag-server/.env:

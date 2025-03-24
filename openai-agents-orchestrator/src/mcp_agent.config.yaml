@@ -1,0 +1,6 @@
+mcp:
+  servers:
+    fetch:
+      command: "uvx"
+      args: ["mcp-server-fetch"]
+      description: "Fetch content at URLs from the world wide web"

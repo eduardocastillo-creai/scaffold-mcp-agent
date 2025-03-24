@@ -1,6 +1,6 @@
 NODE_VERSION := 20
-DOCKER_IMAGE_NAME := agent-orchestrator
-DOCKER_CONTAINER_NAME := agent-orchestrator-container
+DOCKER_IMAGE_NAME := langgraph-orchestrator
+DOCKER_CONTAINER_NAME := langgraph-orchestrator-container
 DOCKER_PORT := 3000
 
 # Local setup

@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "openai_orchestrator"
+version = "0.1.0"
+description = "openai-orchestrator using agents and MCP"
+authors = ["Eduardo Castillo eduardocastillo@creai.mx"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+fastapi = "^0.115.11"
+uvicorn = "^0.34.0"
+python-dotenv = "^1.0.1"
+mcp-agent = "^0.0.10"
+openai-agents = "^0.0.6"
+
+[tool.poetry.scripts]
+start-app = "uvicorn src.main:app"
+
+[[tool.poetry.packages]]
+include = "*"
+from = "src"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -78,10 +78,15 @@ ngrok http 5678
 
 ### 3. Set .env files for all folders
 
-- agent-orchestrator/.env:
+- langgraph-orchestrator/.env:
 ```bash
 PORT=3000
 OPENAI_API_KEY=
+azureOpenAIApiKey=
+azureOpenAIApiInstanceName=
+azureOpenAIApiVersion=
+azureOpenAIApiDeploymentName=
+azureOpenAIEndpoint=
 ```
 
 - crewai-orchestrator/.env:
@@ -138,6 +143,28 @@ docker-compose up -d
 ### 6. GET Request to orchestrator (agent) using query param
 ```bash
 curl "http://0.0.0.0:3000/call-agent?query=Can%20you%20calculate%20my%20bmi,%2066kg%20and%20170cm"
+```
+
+## Docker-compose
+
+For n8n image we need to pass ngrok tunnel on environment like this example:
+
+```bash
+  n8n-salesforce-server:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n-salesforce-server
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=489c-187-190-207-236.ngrok-free.app
+      - N8N_PROTOCOL=https
+      - N8N_PORT=5678
+      - WEBHOOK_URI=https://489c-187-190-207-236.ngrok-free.app/webhook/salesforce
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - my-network
 ```
 
 Or use Postman.

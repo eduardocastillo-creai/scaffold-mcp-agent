@@ -26,9 +26,10 @@ services:
     ports:
       - "5678:5678"
     environment:
-      - N8N_HOST=0.0.0.0
+      - N8N_HOST=489c-187-190-207-236.ngrok-free.app
+      - N8N_PROTOCOL=https
       - N8N_PORT=5678
-      - WEBHOOK_URI=https://6ef1-187-189-127-18.ngrok-free.app/
+      - WEBHOOK_URI=https://489c-187-190-207-236.ngrok-free.app/webhook/salesforce
     volumes:
       - n8n_data:/home/node/.n8n
     networks:

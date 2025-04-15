@@ -56,6 +56,7 @@ export function Chatbot({ apiUrl, chatbotId }: ChatbotProps): React.ReactElement
         newSocket.onmessage = (event) => {
             const data = JSON.parse(event.data);
             const body = data.body;
+            console.log(data, "DATA")
             // convertir el string a un objeto
             // const response = JSON.parse(body);
             let responseText = body.data.assistantResponse;

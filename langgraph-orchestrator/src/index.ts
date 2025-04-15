@@ -76,7 +76,7 @@ wss.on("connection", (ws: any) => {
   ws.on("message", async (message: any) => {
     try {
       const data = JSON.parse(message.toString());
-      const query = data.query;
+      const query = data?.data?.content;
 
       if (!query || typeof query !== "string") {
         ws.send(JSON.stringify({ error: "Invalid 'query'" }));
@@ -98,7 +98,7 @@ wss.on("connection", (ws: any) => {
       console.log(finalResponse)
       console.log("index - call-agent - OUT");
 
-      ws.send(JSON.stringify({ message: finalResponse.content }));
+      ws.send(JSON.stringify({ data: finalResponse.content }));
     } catch (err) {
       console.error("WebSocket error:", err);
       ws.send(JSON.stringify({ error: "Error processing request" }));

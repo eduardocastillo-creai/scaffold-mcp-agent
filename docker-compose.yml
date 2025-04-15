@@ -10,14 +10,14 @@ services:
     networks:
       - my-network
 
-  mcp-rag-server:
-    build:
-      context: ./mcp-rag-server
-    image: mcp-rag-server:latest
-    ports:
-      - "3002:3002"
-    networks:
-      - my-network
+  # mcp-rag-server:
+  #   build:
+  #     context: ./mcp-rag-server
+  #   image: mcp-rag-server:latest
+  #   ports:
+  #     - "3002:3002"
+  #   networks:
+  #     - my-network
 
   # n8n-salesforce-server:
   #   image: docker.n8n.io/n8nio/n8n
@@ -46,14 +46,14 @@ services:
   #   depends_on:
   #     - n8n-salesforce-server
 
-  mcp-figma-server:
-    build:
-      context: ./mcp-figma-server
-    image: mcp-figma-server:latest
-    ports:
-      - "3004:3004"
-    networks:
-      - my-network
+  # mcp-figma-server:
+  #   build:
+  #     context: ./mcp-figma-server
+  #   image: mcp-figma-server:latest
+  #   ports:
+  #     - "3004:3004"
+  #   networks:
+  #     - my-network
 
   mcp-salesforce-server:
     build:
@@ -64,14 +64,14 @@ services:
     networks:
       - my-network
 
-  mcp-airbnb-server:
-    build:
-      context: ./mcp-airbnb-server
-    image: mcp-airbnb-server:latest
-    ports:
-      - "3005:3005"
-    networks:
-      - my-network
+  # mcp-airbnb-server:
+  #   build:
+  #     context: ./mcp-airbnb-server
+  #   image: mcp-airbnb-server:latest
+  #   ports:
+  #     - "3005:3005"
+  #   networks:
+  #     - my-network
 
   langgraph-orchestrator:
     build:
@@ -79,10 +79,10 @@ services:
     image: langgraph-orchestrator:latest
     environment:
       - CLIENT_SPACE_SERVER_CONNECTION=http://mcp-client-space-server:3001/sse
-      - RAG_SERVER_CONNECTION=http://mcp-rag-server:3002/sse
+      # - RAG_SERVER_CONNECTION=http://mcp-rag-server:3002/sse
       # - N8N_SALESFORCE_SERVER_CONNECTION=http://mcp-n8n-salesforce-server:3003/sse
-      - FIGMA_SERVER_CONNECTION=http://mcp-figma-server:3004/sse
-      - AIRBNB_SERVER_CONNECTION=http://mcp-airbnb-server:3005/sse
+      # - FIGMA_SERVER_CONNECTION=http://mcp-figma-server:3004/sse
+      # - AIRBNB_SERVER_CONNECTION=http://mcp-airbnb-server:3005/sse
       - MCP_SALESFORCE_CONNECTION=http://mcp-salesforce-server:3008/sse
     networks:
       - my-network
@@ -90,12 +90,12 @@ services:
       - "3000:3000"
     depends_on:
       - mcp-client-space-server
-      - mcp-rag-server
+      # - mcp-rag-server
       # - n8n-salesforce-server
       # - mcp-n8n-salesforce-server
       - mcp-salesforce-server
-      - mcp-figma-server
-      - mcp-airbnb-server
+      # - mcp-figma-server
+      # - mcp-airbnb-server
     restart: unless-stopped
 
 volumes:

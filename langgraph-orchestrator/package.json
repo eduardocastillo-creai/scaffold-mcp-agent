@@ -24,7 +24,9 @@
         "dotenv": "^16.4.7",
         "eventsource": "^3.0.5",
         "express": "^4.21.2",
-        "extended-eventsource": "^2.1.0"
+        "extended-eventsource": "^2.1.0",
+        "http": "^0.0.1-security",
+        "ws": "^8.18.1"
     },
     "devDependencies": {
         "@types/body-parser": "^1.19.5",

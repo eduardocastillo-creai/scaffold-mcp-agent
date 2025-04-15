@@ -19,32 +19,32 @@ services:
     networks:
       - my-network
 
-  n8n-salesforce-server:
-    image: docker.n8n.io/n8nio/n8n
-    container_name: n8n-salesforce-server
-    restart: always
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_HOST=489c-187-190-207-236.ngrok-free.app
-      - N8N_PROTOCOL=https
-      - N8N_PORT=5678
-      - WEBHOOK_URI=https://489c-187-190-207-236.ngrok-free.app/webhook/salesforce
-    volumes:
-      - n8n_data:/home/node/.n8n
-    networks:
-      - my-network
+  # n8n-salesforce-server:
+  #   image: docker.n8n.io/n8nio/n8n
+  #   container_name: n8n-salesforce-server
+  #   restart: always
+  #   ports:
+  #     - "5678:5678"
+  #   environment:
+  #     - N8N_HOST=489c-187-190-207-236.ngrok-free.app
+  #     - N8N_PROTOCOL=https
+  #     - N8N_PORT=5678
+  #     - WEBHOOK_URI=https://489c-187-190-207-236.ngrok-free.app/webhook/salesforce
+  #   volumes:
+  #     - n8n_data:/home/node/.n8n
+  #   networks:
+  #     - my-network
 
-  mcp-n8n-salesforce-server:
-    build:
-      context: ./mcp-n8n-salesforce-server
-    image: mcp-n8n-salesforce-server:latest
-    ports:
-      - "3003:3003"
-    networks:
-      - my-network
-    depends_on:
-      - n8n-salesforce-server
+  # mcp-n8n-salesforce-server:
+  #   build:
+  #     context: ./mcp-n8n-salesforce-server
+  #   image: mcp-n8n-salesforce-server:latest
+  #   ports:
+  #     - "3003:3003"
+  #   networks:
+  #     - my-network
+  #   depends_on:
+  #     - n8n-salesforce-server
 
   mcp-figma-server:
     build:
@@ -52,6 +52,15 @@ services:
     image: mcp-figma-server:latest
     ports:
       - "3004:3004"
+    networks:
+      - my-network
+
+  mcp-salesforce-server:
+    build:
+      context: ./mcp-salesforce-server
+    image: mcp-salesforce-server:latest
+    ports:
+      - "3008:3008"
     networks:
       - my-network
 
@@ -71,9 +80,10 @@ services:
     environment:
       - CLIENT_SPACE_SERVER_CONNECTION=http://mcp-client-space-server:3001/sse
       - RAG_SERVER_CONNECTION=http://mcp-rag-server:3002/sse
-      - N8N_SALESFORCE_SERVER_CONNECTION=http://mcp-n8n-salesforce-server:3003/sse
+      # - N8N_SALESFORCE_SERVER_CONNECTION=http://mcp-n8n-salesforce-server:3003/sse
       - FIGMA_SERVER_CONNECTION=http://mcp-figma-server:3004/sse
       - AIRBNB_SERVER_CONNECTION=http://mcp-airbnb-server:3005/sse
+      - MCP_SALESFORCE_CONNECTION=http://mcp-salesforce-server:3008/sse
     networks:
       - my-network
     ports:
@@ -81,8 +91,9 @@ services:
     depends_on:
       - mcp-client-space-server
       - mcp-rag-server
-      - n8n-salesforce-server
-      - mcp-n8n-salesforce-server
+      # - n8n-salesforce-server
+      # - mcp-n8n-salesforce-server
+      - mcp-salesforce-server
       - mcp-figma-server
       - mcp-airbnb-server
     restart: unless-stopped

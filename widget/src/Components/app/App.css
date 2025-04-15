@@ -1,0 +1,347 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    color: #979898;
+    background-color: #f7f7f7;
+    overflow: auto !important;
+}
+
+body { -ms-overflow-style: none; }
+body { overflow: -moz-scrollbars-none; }
+body::-webkit-scrollbar { width: 0 !important }
+
+#root {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.Center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NotFound {
+    width: 100%;
+    height: 100%;
+    background-size: 500px;
+    background-color: #f7f7f7;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hidden {
+    visibility: hidden
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.focus:hover {
+    background-color: #e5e6e6;
+}
+
+.modal {
+    width: 90%;
+    height: auto;
+    overflow: auto;
+    max-height: none;
+}
+
+.modal .modal-content {
+    margin-bottom: 0 !important;
+}
+
+.Form {
+    width: 90%;
+    padding: 3%;
+    margin-left: 5%;
+    margin-bottom: 15px;
+    background-color: #fffffff2;
+}
+
+.Form__showPassword {
+    cursor: pointer;
+    margin-left: -12%;
+}
+
+.Form-phone {
+    margin-bottom: 25px;
+}
+
+.Form-phone-search-box {
+    margin-left: 0 !important;
+    padding: 0 !important;
+}
+
+.Form-phone-input {
+    width: 84% !important;
+    margin-left: 16% !important;
+}
+
+.Form-btnRegister {
+    margin: 2%;
+    color: #70b96c;
+    box-shadow: none!important;
+    background-color: inherit;
+}
+
+.Form-btnRegister:hover {
+    background-color: inherit;
+    border: 1px solid #70b96c;
+}
+
+.Form-btnRegister:focus {
+    background-color: inherit;
+    border: 1px solid #70b96c;
+}
+
+.Form-btnCancel {
+    margin: 2%;
+    border: none;
+    color: #70b96c;
+    padding: 0 16px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    background-color: inherit;
+    box-shadow: none!important;
+}
+
+.Form-btnCancel:hover {
+    color: #70b96c;
+    background-color: inherit;
+    border: 1px solid #70b96c;
+}
+
+.Form-btnCancel:focus {
+    background-color: inherit;
+    border: 1px solid #70b96c;
+}
+
+.Form-btnLogin {
+    margin: 2%;
+    float: right;
+    background-color: #70b96c;
+}
+
+.Form-btnSubmit {
+    margin: 2%;
+    color: white;
+    border: none;
+    float: right;
+    padding: 0 16px;
+    border-radius: 2px;
+    letter-spacing: .5px;
+    background-color: #70b96c;
+    text-transform: uppercase;
+    transition: background-color .2s ease-out;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.Form-btnSubmit:hover {
+    color: white;
+    background-color: #a1cc9c!important;
+}
+
+.Form-btnAddWebhook {
+    margin: 2%;
+    float: left;
+    border: none;
+    color: white;
+    padding: 0 16px;
+    border-radius: 2px;
+    letter-spacing: .5px;
+    background-color: #70b96c;
+    text-transform: uppercase;
+    transition: background-color .2s ease-out;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%);
+}
+
+.Form-btnAddWebhook:hover {
+    color: white;
+    background-color: #a1cc9c!important;
+}
+
+.Form-btnLogin:hover {
+    color: white;
+    background-color: #a1cc9c!important;
+}
+
+input[type]:not(.browser-default):focus:not([readonly])+label {
+    color: rgba(5, 8, 9, 0.55);
+}
+
+.Form-input, .Form-phone-input, input[type=search]:not(.browser-default) {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(210, 210, 210, 0.78) !important;
+}
+
+.Form-input-subdomain {
+    display: flex;
+}
+
+.Form-input-subdomain-input {
+    width: 60%;
+}
+
+.Form-input-domain {
+    width: 40%
+}
+
+.Form-inputForm__floatRight {
+    float: right;
+}
+
+.Form-phone-search {
+    margin-left: -5px !important;
+    padding: 3px 8px 5px !important;
+    border-bottom: none !important;
+}
+
+.Form-smsMessage {
+    color: #108710;
+    text-align: center;
+}
+
+.Form-input-error {
+    float: right;
+    color: #ffa5a5;
+    margin-top: -18px;
+    font-size: 0.8rem;
+}
+
+.Form-input-file-error {
+    margin-top: -18px;
+}
+
+.input-field .Form-input-error__border, .Form-input-error__border {
+    border-bottom: 1px solid #ef9797 !important;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    box-shadow: none;
+}
+
+input.invalid:not([type]), input.invalid:not([type]):focus, input.invalid[type=text]:not(.browser-default), input.invalid[type=text]:not(.browser-default):focus, input.invalid[type=password]:not(.browser-default), input.invalid[type=password]:not(.browser-default):focus, input.invalid[type=email]:not(.browser-default), input.invalid[type=email]:not(.browser-default):focus, input.invalid[type=url]:not(.browser-default), input.invalid[type=url]:not(.browser-default):focus, input.invalid[type=time]:not(.browser-default), input.invalid[type=time]:not(.browser-default):focus, input.invalid[type=date]:not(.browser-default), input.invalid[type=date]:not(.browser-default):focus, input.invalid[type=datetime]:not(.browser-default), input.invalid[type=datetime]:not(.browser-default):focus, input.invalid[type=datetime-local]:not(.browser-default), input.invalid[type=datetime-local]:not(.browser-default):focus, input.invalid[type=tel]:not(.browser-default), input.invalid[type=tel]:not(.browser-default):focus, input.invalid[type=number]:not(.browser-default), input.invalid[type=number]:not(.browser-default):focus, input.invalid[type=search]:not(.browser-default), input.invalid[type=search]:not(.browser-default):focus, textarea.materialize-textarea.invalid, textarea.materialize-textarea.invalid:focus, .select-wrapper.invalid>input.select-dropdown, .select-wrapper.invalid>input.select-dropdown:focus {
+    box-shadow: none;
+}
+
+input.valid:not([type]), input.valid:not([type]):focus, input.valid[type=text]:not(.browser-default), input.valid[type=text]:not(.browser-default):focus, input.valid[type=password]:not(.browser-default), input.valid[type=password]:not(.browser-default):focus, input.valid[type=email]:not(.browser-default), input.valid[type=email]:not(.browser-default):focus, input.valid[type=url]:not(.browser-default), input.valid[type=url]:not(.browser-default):focus, input.valid[type=time]:not(.browser-default), input.valid[type=time]:not(.browser-default):focus, input.valid[type=date]:not(.browser-default), input.valid[type=date]:not(.browser-default):focus, input.valid[type=datetime]:not(.browser-default), input.valid[type=datetime]:not(.browser-default):focus, input.valid[type=datetime-local]:not(.browser-default), input.valid[type=datetime-local]:not(.browser-default):focus, input.valid[type=tel]:not(.browser-default), input.valid[type=tel]:not(.browser-default):focus, input.valid[type=number]:not(.browser-default), input.valid[type=number]:not(.browser-default):focus, input.valid[type=search]:not(.browser-default), input.valid[type=search]:not(.browser-default):focus, textarea.materialize-textarea.valid, textarea.materialize-textarea.valid:focus, .select-wrapper.valid>input.select-dropdown {
+    box-shadow: none;
+}
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #9e9e9e;
+}
+
+.primary {
+    color: #0f9d58;
+}
+
+.margin-top__25 {
+    margin-top: 25px;
+}
+
+.secondaryTXT {
+    color: #b5b5b5;
+}
+
+.copy {
+    display: flex;
+    justify-content: center;
+}
+
+.copy i {
+    font-size: 1.3em !important;
+}
+
+@media screen and (min-width: 401px) {
+    .Form__showPassword {
+        margin-left: -10%;
+    }
+
+    .Form-phone-input {
+        width: 87% !important;
+        margin-left: 13% !important;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .Form__showPassword {
+        margin-left: -8%;
+    }
+
+    .Form-phone-input {
+        width: 90% !important;
+        margin-left: 10% !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #global-footer .footer-content {
+        padding: 0 16px;
+    }
+
+    #global-footer .footer-section {
+        padding-top: 17px;
+    }
+
+    #global-footer .footer-section .footer-shop {
+        border-bottom: none;
+    }
+
+    #global-footer .footer-logos {
+        left: -1px;
+        padding-top: 5px;
+        float: none;
+    }
+
+    #global-footer .footer-legal {
+        padding-top: 12px;
+    }
+
+    #global-footer .footer-legal-copyright {
+        max-height: 9999px;
+    }
+
+    #global-footer .footer-legal-copyright, #global-footer .footer-legal-links {
+        margin-right: 0;
+        float: none;
+    }
+}
+
+@media screen and (min-width: 801px) {
+    .modal {
+        width: 40%
+    }
+
+    .Form__showPassword {
+        margin-left: -10%;
+    }
+}
+
+@media only screen and (max-width: 1044px) {
+    #global-footer {
+        min-width: 320px;
+    }
+}
+
+@media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+
+.ant-alert {
+    margin: 25px auto;
+    width: 90%;
+}

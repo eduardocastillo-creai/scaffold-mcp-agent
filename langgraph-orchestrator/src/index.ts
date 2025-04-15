@@ -87,7 +87,18 @@ wss.on("connection", (ws: any) => {
         messages: [{ role: 'user', content: query }],
       });
 
-      ws.send(JSON.stringify({ message: response }));
+      const toolMessages = response.messages.filter((message) => message.getType() === "tool")
+        .map((message) => ({
+            content: message.content,
+            type: message.getType()
+        }));
+      // console.log(toolMessages)
+      const finalResponse = toolMessages[toolMessages.length - 1];
+
+      console.log(finalResponse)
+      console.log("index - call-agent - OUT");
+
+      ws.send(JSON.stringify({ message: finalResponse.content }));
     } catch (err) {
       console.error("WebSocket error:", err);
       ws.send(JSON.stringify({ error: "Error processing request" }));
